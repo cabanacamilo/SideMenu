@@ -21,13 +21,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tZv-TM-Rne">
-                                <rect key="frame" x="0.0" y="0.0" width="324" height="896"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="V0B-VO-5ZB" kind="embed" id="3ev-Lv-geN"/>
-                                </connections>
-                            </containerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -44,8 +37,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="sideMenuView" destination="tZv-TM-Rne" id="VdA-I1-Da1"/>
-                        <segue destination="3cL-yK-adM" kind="show" identifier="SignOut" id="fFS-A9-ZYK"/>
                         <segue destination="mlN-cL-V7W" kind="show" identifier="Settings" id="g7f-6p-m3a"/>
                         <segue destination="cIP-hH-AWc" kind="show" identifier="Profile" id="Bey-tH-Atf"/>
                     </connections>
@@ -127,76 +118,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mgC-7l-2yy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="116.51785714285714"/>
-        </scene>
-        <!--Side Menu View Controller-->
-        <scene sceneID="GX1-6D-m9J">
-            <objects>
-                <viewController id="V0B-VO-5ZB" customClass="SideMenuViewController" customModule="SideMenu" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="coG-E8-fIW">
-                        <rect key="frame" x="0.0" y="0.0" width="324" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VPt-R7-zCd">
-                                <rect key="frame" x="0.0" y="0.0" width="324" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SideMenu" rowHeight="90" id="RFW-Xg-exa">
-                                        <rect key="frame" x="0.0" y="28" width="324" height="90"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RFW-Xg-exa" id="5bc-bp-V4t">
-                                            <rect key="frame" x="0.0" y="0.0" width="324" height="90"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="V0B-VO-5ZB" id="eoJ-lO-nBo"/>
-                                    <outlet property="delegate" destination="V0B-VO-5ZB" id="pAQ-MG-snj"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="VPt-R7-zCd" secondAttribute="bottom" id="AX4-iH-wdh"/>
-                            <constraint firstItem="VPt-R7-zCd" firstAttribute="leading" secondItem="coG-E8-fIW" secondAttribute="leading" id="S04-BU-ruQ"/>
-                            <constraint firstItem="VPt-R7-zCd" firstAttribute="top" secondItem="coG-E8-fIW" secondAttribute="top" id="nMi-MI-l3M"/>
-                            <constraint firstAttribute="trailing" secondItem="VPt-R7-zCd" secondAttribute="trailing" id="wDW-73-87c"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="UTM-i8-NpO"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tJX-sX-6Ql" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="757.97101449275374" y="844.41964285714278"/>
-        </scene>
-        <!--SignOut-->
-        <scene sceneID="jOT-7S-lX6">
-            <objects>
-                <viewController id="3cL-yK-adM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8nu-eb-AKM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amazing SignOut" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69J-bg-ZuB">
-                                <rect key="frame" x="112.5" y="460" width="189" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="69J-bg-ZuB" firstAttribute="centerY" secondItem="Md5-sx-Q7i" secondAttribute="centerY" id="0Ak-E9-9RJ"/>
-                            <constraint firstItem="69J-bg-ZuB" firstAttribute="centerX" secondItem="Md5-sx-Q7i" secondAttribute="centerX" id="3cV-nd-MSW"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="Md5-sx-Q7i"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="SignOut" id="iiJ-UH-gUy"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HvG-4x-4YW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1916" y="817"/>
         </scene>
     </scenes>
     <resources>
