@@ -32,6 +32,7 @@ class SideMenuController: NSObject, UICollectionViewDelegate, UICollectionViewDa
             blackVIew.backgroundColor = UIColor(white: 0, alpha: 0.8)
             sideMenu.backgroundColor = .systemBackground
             blackVIew.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissSideMenu)))
+//            window.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panDismissSideMenu)))
             window.addSubview(blackVIew)
             window.addSubview(sideMenu)
             let witdth: CGFloat = window.frame.width * 0.7
@@ -54,6 +55,21 @@ class SideMenuController: NSObject, UICollectionViewDelegate, UICollectionViewDa
         }
     }
     
+//    @objc func panDismissSideMenu(sender: UIPanGestureRecognizer) {
+//        if let window = (UIApplication.shared.windows.filter {$0.isKeyWindow}.first) {
+//            let translation = sender.translation(in: window)
+//            switch sender.state {
+//            case .changed:
+//                if sideMenu.frame.maxX >= 0 && sideMenu.frame.maxX <= sideMenu.frame.width {
+//                    sideMenu.frame = CGRect(x: translation.x, y: 0, width: sideMenu.frame.width, height: sideMenu.frame.height)
+//                    blackVIew.alpha = 1 + translation.x/sideMenu.frame.width
+//                }
+//            default:
+//                break
+//            }
+//        }
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 50)
     }
@@ -71,6 +87,15 @@ class SideMenuController: NSObject, UICollectionViewDelegate, UICollectionViewDa
         let menu = menuInformation[indexPath.row]
         cell.menu = menu
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 100)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SideMenuHeader", for: indexPath) as! SideMenuHeader
+        return headerView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -93,5 +118,6 @@ class SideMenuController: NSObject, UICollectionViewDelegate, UICollectionViewDa
         sideMenu.dataSource = self
         sideMenu.delegate = self
         sideMenu.register(SideMenuCell.self, forCellWithReuseIdentifier: "SideMenu")
+        sideMenu.register(SideMenuHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SideMenuHeader")
     }
 }

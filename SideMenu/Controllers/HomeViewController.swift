@@ -10,10 +10,10 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    lazy var settingsLauncher: SideMenuController = {
-        let sideMenu = SideMenuController()
-        sideMenu.homeController = self
-        return sideMenu
+    lazy var sideMenu: SideMenuController = {
+        let menu = SideMenuController()
+        menu.homeController = self
+        return menu
     }()
     
     override func viewDidLoad() {
@@ -21,7 +21,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func sideMenuButton(_ sender: UIBarButtonItem) {
-        settingsLauncher.showSideMenu()
+        sideMenu.showSideMenu()
     }
     
     func showControllerForSideMenu(goTo: String) {
