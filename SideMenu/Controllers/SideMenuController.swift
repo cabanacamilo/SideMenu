@@ -32,10 +32,10 @@ class SideMenuController: NSObject, UICollectionViewDelegate, UICollectionViewDa
             blackVIew.backgroundColor = UIColor(white: 0, alpha: 0.8)
             sideMenu.backgroundColor = .systemBackground
             blackVIew.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissSideMenu)))
-//            window.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panDismissSideMenu)))
+            sideMenu.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGestureSideMenu)))
             window.addSubview(blackVIew)
             window.addSubview(sideMenu)
-            let witdth: CGFloat = window.frame.width * 0.7
+            let witdth: CGFloat = window.frame.width * 0.8
             sideMenu.frame = CGRect(x: -witdth, y: 0, width: witdth, height: window.frame.height)
             blackVIew.frame = window.frame
             blackVIew.alpha = 0
@@ -55,20 +55,28 @@ class SideMenuController: NSObject, UICollectionViewDelegate, UICollectionViewDa
         }
     }
     
-//    @objc func panDismissSideMenu(sender: UIPanGestureRecognizer) {
-//        if let window = (UIApplication.shared.windows.filter {$0.isKeyWindow}.first) {
-//            let translation = sender.translation(in: window)
-//            switch sender.state {
-//            case .changed:
-//                if sideMenu.frame.maxX >= 0 && sideMenu.frame.maxX <= sideMenu.frame.width {
-//                    sideMenu.frame = CGRect(x: translation.x, y: 0, width: sideMenu.frame.width, height: sideMenu.frame.height)
-//                    blackVIew.alpha = 1 + translation.x/sideMenu.frame.width
-//                }
-//            default:
-//                break
-//            }
-//        }
-//    }
+    @objc func panGestureSideMenu(sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: sideMenu)
+        switch sender.state {
+        case .changed:
+            if translation.x <= 0 && translation.x >= -sideMenu.frame.width {
+                sideMenu.frame = CGRect(x: translation.x, y: 0, width: sideMenu.frame.width, height: sideMenu.frame.height)
+                blackVIew.alpha = 1 + translation.x/sideMenu.frame.width
+            }
+        case .ended:
+            UIView.animate(withDuration: 0.5) {
+                if translation.x > -(self.sideMenu.frame.width * 0.5) {
+                    self.sideMenu.frame = CGRect(x: 0, y: 0, width: self.sideMenu.frame.width, height: self.sideMenu.frame.height)
+                    self.blackVIew.alpha = 1
+                } else {
+                    self.sideMenu.frame = CGRect(x: -self.sideMenu.frame.width, y: 0, width: self.sideMenu.frame.width, height: self.sideMenu.frame.height)
+                    self.blackVIew.alpha = 0
+                }
+            }
+        default:
+            break
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 50)
